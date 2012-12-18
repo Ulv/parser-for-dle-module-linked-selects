@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="vuz" defaultIdMethod="native">
+  <table name="spec" phpName="Spec">
+    <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+    <column name="title" type="varchar" size="255" required="true" />
+  </table>
+  <table name="region" phpName="Region">
+    <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+    <column name="title" type="varchar" size="128" required="true"/>
+  </table>
+  <table name="vuz" phpName="Vuz">
+   <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+   <column name="title" type="varchar" size="128" required="true" />
+  </table>
+  <table name="spectovuz" phpName="SpecToVuz">
+   <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+   <column name="spec_id" type="integer" required="true" />
+   <column name="region_id" type="integer" required="true" />
+   <column name="vuz_id" type="integer" required="true" />
+    <foreign-key foreignTable="spec" phpName="Spec" refPhpName="SpecToVuz">
+      <reference local="spec_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="region" phpName="Region" refPhpName="SpecToVuz">
+      <reference local="region_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="vuz" phpName="Vuz" refPhpName="SpecToVuz">
+      <reference local="vuz_id" foreign="id"/>
+    </foreign-key>
+  </table>
+</database>
